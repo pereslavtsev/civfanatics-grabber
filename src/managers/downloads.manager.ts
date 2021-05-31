@@ -7,6 +7,7 @@ export class DownloadsManager {
   protected readonly http = httpClient;
   protected readonly debug = debug('downloads');
 
+  async getResource(url: string): Promise<Resource>;
   async getResource(id: number | string): Promise<Resource> {
     this.debug('get resource: %d', id);
     try {
