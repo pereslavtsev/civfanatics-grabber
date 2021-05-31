@@ -4,6 +4,10 @@
     "moduleResolution": "node",
     "target": "es2017",
     "esModuleInterop": true,
-    "noEmit": true
-  }
+    "noEmit": true,
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.ts"
+  ]
 }

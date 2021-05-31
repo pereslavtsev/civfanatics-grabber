@@ -10,6 +10,7 @@ module.exports = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, './dist'),
+    libraryTarget: 'commonjs',
   },
   plugins: [new CleanWebpackPlugin()],
   resolve: {
