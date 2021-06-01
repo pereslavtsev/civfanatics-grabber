@@ -1,9 +1,14 @@
 dist
 lib
 node_modules
-coverage
 
 .idea
 *.iml
 
 *.log
+
+.eslint*
+.prettier*
+
+.git
+.gitignore

@@ -1,0 +1,22 @@
+version: '2.1'
+orbs:
+  node: circleci/node@10
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '10'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn lint
+          name: Run linter
+      - run:
+          command: yarn test
+          name: Run tests
+workflows:
+  test_lib:
+    jobs:
+      - test

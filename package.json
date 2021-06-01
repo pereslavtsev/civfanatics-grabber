@@ -8,6 +8,7 @@
     "dev": "webpack --mode=development --watch",
     "lint": "eslint */**/*.{js,ts,tsx} --quiet",
     "test": "jest --runInBand --detectOpenHandles --colors --verbose --reporters=default",
+    "test:coverage": "jest --coverage",
     "test:debug": "cross-env DEBUG=* yarn test"
   },
   "dependencies": {

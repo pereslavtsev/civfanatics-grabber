@@ -1,10 +1,13 @@
 import { Category } from './category.model';
 import { Base } from './base.model';
 import { Author } from './author.model';
+import { Version } from './version.model';
 
-type ResourceRating = {
+export type ResourceRating = {
   value: number;
   count: number;
+  best: number;
+  average: number;
 };
 
 export class Resource extends Base {
@@ -34,10 +37,12 @@ export class Resource extends Base {
 
   // Information
   public author: Author;
+  public category: Category;
   public downloadCount = 0;
   public firstRelease: Date;
   public lastUpdate: Date;
-  public resourceCategory: Category;
   public rating: ResourceRating;
   public descriptionHtml: string;
+
+  public latestVersion: Version;
 }
