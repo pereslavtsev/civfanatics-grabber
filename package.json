@@ -6,10 +6,12 @@
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack --mode=development --watch",
+    "docs": "typedoc",
     "lint": "eslint */**/*.{js,ts,tsx} --quiet",
     "test": "jest --runInBand --detectOpenHandles --colors --verbose --reporters=default",
-    "test:coverage": "jest --coverage",
-    "test:debug": "cross-env DEBUG=* yarn test"
+    "test:coverage": "yarn test --coverage",
+    "test:debug": "cross-env DEBUG=* yarn test",
+    "prepare": "husky install"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -35,10 +37,12 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
     "jest": "^27.0.3",
     "prettier": "^2.3.0",
     "ts-jest": "^27.0.2",
-    "typescript": "^4.3.2",
+    "typedoc": "^0.20.36",
+    "typescript": "4.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-node-externals": "^3.0.0"

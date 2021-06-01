@@ -1,12 +1,14 @@
 dist
 lib
 node_modules
+docs
 
 .idea
 *.iml
 
 *.log
 
+.husky
 .eslint*
 .prettier*
 

@@ -5,6 +5,9 @@ import { Author, Category, Resource } from '../models';
 import { parseLink, parseRating, parseReleaseDateTime } from '../helpers';
 import { Version } from '../models/version.model';
 
+/**
+ * Downloads Manager
+ */
 export class DownloadsManager {
   protected readonly http = httpClient;
   protected readonly debug = debug('downloads');
