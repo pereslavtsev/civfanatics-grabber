@@ -1,10 +1,11 @@
 version: '2.1'
 orbs:
+  coveralls: coveralls/coveralls@1.0.6
   node: circleci/node@4.4.0
 jobs:
   test:
     docker:
-      - image: 'cimg/node:10.24.1'
+      - image: 'cimg/node:10.0.0'
     steps:
       - checkout
       - node/install-packages:
@@ -13,8 +14,9 @@ jobs:
           command: yarn lint
           name: Run linter
       - run:
-          command: yarn test
+          command: yarn test:coverage
           name: Run tests
+      - coveralls/upload
 workflows:
   test_lib:
     jobs:
