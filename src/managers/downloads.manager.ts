@@ -13,6 +13,7 @@ export class DownloadsManager {
   protected readonly debug = debug('downloads');
 
   async getResource(url: string): Promise<Resource>;
+  async getResource(id: number): Promise<Resource>;
   async getResource(id: number | string): Promise<Resource> {
     this.debug('get resource: %d', id);
     const resource = new Resource(id);
@@ -127,5 +128,19 @@ export class DownloadsManager {
 
     this.debug('resource: %O', resource);
     return resource;
+  }
+
+  async getResourceHistory(url: string): Promise<Version[]>;
+  async getResourceHistory(id: number): Promise<Version[]>;
+  async getResourceHistory(id: number | string): Promise<Version[]> {
+    this.debug('get resource history: %d', id);
+    const resource = new Resource(id);
+    const { $ } = await this.http.get<unknown, HttpResponse>(
+      `/resources/${resource.id}/history`
+    );
+    const rows = $('.resourceHistory tr:not(:eq(0))').map((i, el) => {
+      this.debug('row: %s', $(el).html());
+    });
+    return [];
   }
 }

@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 import cheerio, { CheerioAPI } from 'cheerio';
+import { BASE_URL } from '../consts';
 
 export type HttpResponse = AxiosResponse & { $: CheerioAPI };
 
 const httpClient = axios.create({
-  baseURL: 'https://forums.civfanatics.com/',
+  baseURL: BASE_URL,
 });
 
 httpClient.interceptors.response.use((res: HttpResponse) => {

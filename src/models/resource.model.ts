@@ -2,6 +2,7 @@ import { Category } from './category.model';
 import { Base } from './base.model';
 import { Author } from './author.model';
 import { Version } from './version.model';
+import { BASE_URL } from '../consts';
 
 export type ResourceRating = {
   value: number;
@@ -43,6 +44,15 @@ export class Resource extends Base {
   public lastUpdate: Date;
   public rating: ResourceRating;
   public descriptionHtml: string;
-
   public latestVersion: Version;
+
+  /**
+   * Build download url
+   * @param version
+   */
+  downloadUrl(version?: number): string {
+    return `${BASE_URL}/resources/${this.id}/download?version=${
+      version ?? this.latestVersion.id
+    }`;
+  }
 }
