@@ -1,6 +1,6 @@
 {
   "name": "civfanatics-grabber",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple resource parser for CivFanatics Forums.",
   "homepage": "https://github.com/pereslavtsev/civfanatics-grabber#readme",
   "bugs": {
