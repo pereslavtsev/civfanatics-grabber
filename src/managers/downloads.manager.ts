@@ -13,6 +13,7 @@ export class DownloadsManager {
   protected readonly debug = debug('downloads');
 
   async getResource(url: string): Promise<Resource>;
+  async getResource(id: number): Promise<Resource>;
   async getResource(id: number | string): Promise<Resource> {
     this.debug('get resource: %d', id);
     const resource = new Resource(id);
@@ -127,5 +128,61 @@ export class DownloadsManager {
 
     this.debug('resource: %O', resource);
     return resource;
+  }
+
+  async getResourceHistory(url: string): Promise<Version[]>;
+  async getResourceHistory(id: number): Promise<Version[]>;
+  async getResourceHistory(id: number | string): Promise<Version[]> {
+    this.debug('get resource history: %d', id);
+    const resource = new Resource(id);
+    const { $ } = await this.http.get<unknown, HttpResponse>(
+      `/resources/${resource.id}/history`
+    );
+    const rows = $('.resourceHistory tr:not(:eq(0))').toArray();
+    const versions: Version[] = [];
+    for (const row of rows) {
+      this.debug(
+        'row: %s',
+        $(row)
+          .html()
+          .replace(/\s{2,}/g, '')
+          .replace(/\n/, '')
+      );
+      const [
+        versionNode,
+        releaseDateNode,
+        downloadsNode,
+        ratingNode,
+        dataOptionsNode,
+      ] = $(row).find('td').toArray();
+      const [, versionId] = $(dataOptionsNode)
+        .find('a')
+        .attr('href')
+        .match(/version=(\d+)$/);
+      this.debug('version id: %d', versionId);
+      const version = new Version(parseInt(versionId));
+      version.name = $(versionNode).text();
+
+      const dateTimeNode = $(releaseDateNode).find('.DateTime');
+      this.debug('datetime node: %s', dateTimeNode.html());
+      const releaseDateTime = parseReleaseDateTime(dateTimeNode);
+      this.debug('version released: %s', releaseDateTime);
+      version.releasedAt = DateTime.fromFormat(
+        releaseDateTime,
+        'ff'
+      ).toJSDate();
+
+      version.downloadCount = parseInt($(downloadsNode).text());
+      this.debug('version download count: %d', version.downloadCount);
+
+      const rating = parseRating($(ratingNode).find('.rating dd'));
+      this.debug('version rating: %o', rating);
+      version.rating = rating;
+
+      this.debug('version obj: %O', version);
+
+      versions.push(version);
+    }
+    return versions;
   }
 }

@@ -14,3 +14,13 @@ or using yarn:
 ```shell
 yarn add civfanatics-grabber
 ```
+## Usage
+
+```typescript
+import api from 'civfanatics-grabber';
+
+const resource = await api.downloads.getResource(12345);
+```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -1,17 +1,37 @@
 {
   "name": "civfanatics-grabber",
   "version": "0.1.0",
+  "description": "Simple resource parser for CivFanatics Forums.",
+  "homepage": "https://github.com/pereslavtsev/civfanatics-grabber#readme",
+  "bugs": {
+    "url": "https://github.com/pereslavtsev/civfanatics-grabber/issues"
+  },
+  "author": {
+    "name": "Vitaly Pereslavtsev",
+    "email": "dev@pereslavtsev.com",
+    "url": "https://www.pereslavtsev.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pereslavtsev/civfanatics-grabber.git"
+  },
+  "keywords": [
+    "grabber",
+    "xenforo",
+    "civilization"
+  ],
   "main": "dist/main.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack --mode=development --watch",
     "docs": "typedoc",
-    "lint": "eslint */**/*.{js,ts,tsx} --quiet",
+    "lint": "eslint */**/*.{js,ts,tsx,md} --quiet",
     "test": "jest --runInBand --detectOpenHandles --colors --verbose --reporters=default",
     "test:coverage": "yarn test --coverage",
     "test:debug": "cross-env DEBUG=* yarn test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublish": "yarn test && yarn build"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -36,6 +56,8 @@
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-markdown": "^2.2.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
     "jest": "^27.0.3",
