@@ -16,7 +16,8 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "plugin:jest/all"
+    "plugin:jest/all",
+    "plugin:markdown/recommended"
   ],
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": true }],
