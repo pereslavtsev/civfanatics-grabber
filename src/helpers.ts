@@ -2,6 +2,9 @@ import { Cheerio } from 'cheerio';
 import { ResourceRating } from './models';
 
 export const parseReleaseDateTime = (el: Cheerio<any>): string => {
+  if (el.prop('tagName') === 'ABBR') {
+    return el.text().replace(/ at/, ',');
+  }
   return el.attr('title').replace(/ at/, ',');
 };
 

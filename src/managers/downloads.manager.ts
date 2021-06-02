@@ -138,9 +138,51 @@ export class DownloadsManager {
     const { $ } = await this.http.get<unknown, HttpResponse>(
       `/resources/${resource.id}/history`
     );
-    const rows = $('.resourceHistory tr:not(:eq(0))').map((i, el) => {
-      this.debug('row: %s', $(el).html());
-    });
-    return [];
+    const rows = $('.resourceHistory tr:not(:eq(0))').toArray();
+    const versions: Version[] = [];
+    for (const row of rows) {
+      this.debug(
+        'row: %s',
+        $(row)
+          .html()
+          .replace(/\s{2,}/g, '')
+          .replace(/\n/, '')
+      );
+      const [
+        versionNode,
+        releaseDateNode,
+        downloadsNode,
+        ratingNode,
+        dataOptionsNode,
+      ] = $(row).find('td').toArray();
+      const [, versionId] = $(dataOptionsNode)
+        .find('a')
+        .attr('href')
+        .match(/version=(\d+)$/);
+      this.debug('version id: %d', versionId);
+      const version = new Version(parseInt(versionId));
+      version.name = $(versionNode).text();
+
+      const dateTimeNode = $(releaseDateNode).find('.DateTime');
+      this.debug('datetime node: %s', dateTimeNode.html());
+      const releaseDateTime = parseReleaseDateTime(dateTimeNode);
+      this.debug('version released: %s', releaseDateTime);
+      version.releasedAt = DateTime.fromFormat(
+        releaseDateTime,
+        'ff'
+      ).toJSDate();
+
+      version.downloadCount = parseInt($(downloadsNode).text());
+      this.debug('version download count: %d', version.downloadCount);
+
+      const rating = parseRating($(ratingNode).find('.rating dd'));
+      this.debug('version rating: %o', rating);
+      version.rating = rating;
+
+      this.debug('version obj: %O', version);
+
+      versions.push(version);
+    }
+    return versions;
   }
 }

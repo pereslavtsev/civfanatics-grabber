@@ -8,6 +8,12 @@ const httpClient = axios.create({
   baseURL: BASE_URL,
 });
 
+if (typeof window === 'undefined') {
+  httpClient.defaults.headers = {
+    'User-Agent': `CivFanatics Grabber ${process.env.npm_package_version}`,
+  };
+}
+
 httpClient.interceptors.response.use((res: HttpResponse) => {
   res.$ = cheerio.load(res.data);
   return res;

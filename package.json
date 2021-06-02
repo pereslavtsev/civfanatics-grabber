@@ -1,6 +1,21 @@
 {
   "name": "civfanatics-grabber",
   "version": "0.1.0",
+  "description": "Simple resource parser for CivFanatics Forums.",
+  "homepage": "https://github.com/pereslavtsev/civfanatics-grabber#readme",
+  "bugs": {
+    "url": "https://github.com/pereslavtsev/civfanatics-grabber/issues"
+  },
+  "author": {
+    "name" : "Vitaly Pereslavtsev",
+    "email" : "dev@pereslavtsev.com",
+    "url" : "https://www.pereslavtsev.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pereslavtsev/civfanatics-grabber.git"
+  },
+  "keywords": ["grabber", "xenforo", "civilization"],
   "main": "dist/main.js",
   "license": "MIT",
   "scripts": {
@@ -11,7 +26,8 @@
     "test": "jest --runInBand --detectOpenHandles --colors --verbose --reporters=default",
     "test:coverage": "yarn test --coverage",
     "test:debug": "cross-env DEBUG=* yarn test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "axios": "^0.21.1",

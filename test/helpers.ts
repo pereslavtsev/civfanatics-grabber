@@ -1,6 +1,8 @@
 import api, { Author, Category, Resource } from '../src';
 
-const isValidDate = (d: Date) => d instanceof Date && !isNaN(d.getTime());
+// eslint-disable-next-line jest/no-export
+export const isValidDate = (d: Date) =>
+  d instanceof Date && !isNaN(d.getTime());
 
 // eslint-disable-next-line jest/no-export
 export const createGetResourceSuite = (id: string | number) => (): void => {
