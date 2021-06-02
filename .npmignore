@@ -9,11 +9,15 @@ docs
 
 *.log
 
+# docker files
 .dockerignore
 Dockerfile
 
+# test sources
 test
 jest*
 
 .circleci
 .husky
+.eslint*
+.prettier*

@@ -1,6 +1,6 @@
 {
   "name": "civfanatics-grabber",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple resource parser for CivFanatics Forums.",
   "homepage": "https://github.com/pereslavtsev/civfanatics-grabber#readme",
   "bugs": {
@@ -20,10 +20,11 @@
     "xenforo",
     "civilization"
   ],
-  "main": "dist/main.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production && tsc --project tsconfig.typings.json",
     "dev": "webpack --mode=development --watch",
     "docs": "typedoc",
     "lint": "eslint */**/*.{js,ts,tsx,md} --quiet",
