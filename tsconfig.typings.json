@@ -3,7 +3,12 @@
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
-    "outFile": "dist/index.d.ts",
+    "declarationDir": "lib",
     "emitDeclarationOnly": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.ts",
+    "test"
+  ]
 }

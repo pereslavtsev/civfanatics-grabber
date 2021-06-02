@@ -8,7 +8,7 @@
   },
   "exclude": [
     "node_modules",
-    "src/**/*.spec.ts"
+    "src/**/*.spec.ts",
   ],
   "typedocOptions": {
     "entryPoints": ["src/index.ts", "./src/managers", "./src/helpers.ts"],
