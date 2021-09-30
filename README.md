@@ -10,6 +10,10 @@ Simple resource parser for [CivFanatics Forums](https://forums.civfanatics.com/)
 
 ## Install
 ```shell
+pnpm i civfanatics-grabber
+```
+npm:
+```shell
 npm i civfanatics-grabber
 ```
 or using yarn:
